@@ -8,17 +8,44 @@
 
 import UIKit
 import CoreData
+import Firebase
+import FirebaseCore
+import FirebaseUI
+import MaterialComponents
+import UserNotifications
+import FirebaseMessaging
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, FUIAuthDelegate, UNUserNotificationCenterDelegate {
+    
+    let mdcMessage = MDCSnackbarMessage()
+    let mdcAction = MDCSnackbarMessageAction()
+    var window: UIWindow?
+    lazy var database = Database.database()
+    var blockedRef: DatabaseReference!
+    var blockingRef: DatabaseReference!
+    let gcmMessageIDKey = "gcm.message_id"
+    var notificationGranted = false
+    private var blocked = Set<String>()
+    private var blocking = Set<String>()
+    static var euroZone: Bool = {
+      switch Locale.current.regionCode {
+      case "CH", "AT", "IT", "BE", "LV", "BG", "LT", "HR", "LX", "CY", "MT", "CZ", "NL", "DK",
+           "PL", "EE", "PT", "FI", "RO", "FR", "SK", "DE", "SI", "GR", "ES", "HU", "SE", "IE", "GB":
+        return true
+      default:
+        return false
+      }
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
-    }
+         FirebaseApp.configure()
+         Messaging.messaging().delegate = self
 
+           return true
+
+    }
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -77,6 +104,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 
