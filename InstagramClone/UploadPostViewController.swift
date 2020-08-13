@@ -10,9 +10,12 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
+import IQKeyboardManager
 
-class UploadPostViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate {
-
+class UploadPostViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITabBarControllerDelegate {
+    
+    var keyboardHeight: CGFloat = 0.0
+    @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var postPhoto: UIImageView!
     @IBOutlet weak var postComment: UITextView!
     
@@ -20,15 +23,57 @@ class UploadPostViewController: UIViewController, UINavigationControllerDelegate
     lazy var database = Database.database()
     lazy var storage = Storage.storage()
     
-    let uid = Auth.auth().currentUser!.uid
+    lazy var uid = Auth.auth().currentUser!.uid
     var fullURL = ""
     var thumbURL = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeTextView()
+        self.tabBarController?.delegate = self
         openPicture()
-
+        
         // Do any additional setup after loading the view.
     }
+    
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+      let isModalTab = viewController == self
+      
+      if isModalTab {
+        let st = UIStoryboard.init(name: "Main", bundle: nil)
+        let cameraVC = st.instantiateViewController(withIdentifier: "UploadPostViewController")
+        present(cameraVC, animated: true)
+      }
+    }
+    
+    func customizeTextView(){
+        self.addKeyboardNotification()
+        postComment.layer.borderColor = UIColor.darkGray.cgColor
+        postComment.layer.borderWidth = 1.5
+        postComment.layer.cornerRadius = 10
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue, self.keyboardHeight <= 0.0 {
+            self.keyboardHeight = 150.0 //(Add 45 if your keyboard have toolBar if not then remove it)
+        }
+
+        UIView.animate(withDuration: 0.3, animations: {
+            self.textViewBottomConstraint.constant = self.keyboardHeight
+        }, completion: { (success) in
+        })
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.textViewBottomConstraint.constant = 10.0
+        }, completion: { (success) in
+        })
+    }
+    
+    deinit {
+        self.removeKeyboardNotification()
+    }
+    
     func openPicture() {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
@@ -36,6 +81,20 @@ class UploadPostViewController: UIViewController, UINavigationControllerDelegate
         vc.delegate = self
         present(vc, animated: true)
     }
+    
+    // setup for textview resizing
+    fileprivate func addKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    fileprivate func removeKeyboardNotification() {
+        IQKeyboardManager.shared().isEnabled = true
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+
     
     @IBAction func postPressed(_ sender: Any) {
         guard let image = postPhoto.image else { return }
@@ -114,6 +173,8 @@ class UploadPostViewController: UIViewController, UINavigationControllerDelegate
     
     
 }
+
+
 
 
 

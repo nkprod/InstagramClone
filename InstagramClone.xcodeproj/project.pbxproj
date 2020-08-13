@@ -25,10 +25,13 @@
 		7F69967724E2C62C009D7821 /* UserFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F69967624E2C62C009D7821 /* UserFeedCollectionViewCell.swift */; };
 		7F69967B24E2C8C9009D7821 /* UserProfileCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F69967A24E2C8C8009D7821 /* UserProfileCardCollectionViewCell.xib */; };
 		7F69967D24E2CED5009D7821 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F69967C24E2CED5009D7821 /* Extensions.swift */; };
-		7F69968124E2D8A1009D7821 /* UProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F69968024E2D8A1009D7821 /* UProfileCollectionViewController.swift */; };
 		7F69968524E2DB5B009D7821 /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F69968424E2DB5B009D7821 /* UserHeader.swift */; };
 		7F6B353924E16D73008C37F4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6B353824E16D73008C37F4 /* ProfileViewController.swift */; };
-		7F6B353B24E2BCAD008C37F4 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6B353A24E2BCAD008C37F4 /* UserProfileViewController.swift */; };
+		7FA0EAE124E31ED90093025A /* FeedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA0EAE024E31ED90093025A /* FeedCollectionViewController.swift */; };
+		7FABA6E724E3A32500B853D4 /* AuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FABA6E624E3A32500B853D4 /* AuthPickerViewController.xib */; };
+		7FABA6E924E3BDBF00B853D4 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABA6E824E3BDBF00B853D4 /* InitialViewController.swift */; };
+		7FABA6ED24E4172D00B853D4 /* ProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABA6EC24E4172D00B853D4 /* ProfileCollectionViewController.swift */; };
+		7FABA6EF24E4561700B853D4 /* TextView + Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABA6EE24E4561700B853D4 /* TextView + Placeholder.swift */; };
 		7FE53EE924E305E60083A3AC /* AuthPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE53EE824E305E60083A3AC /* AuthPickerViewController.swift */; };
 		A94CD026F8F44B665FF0FF5B /* Pods_InstagramClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648A0D8AD1CED96117557DA2 /* Pods_InstagramClone.framework */; };
 /* End PBXBuildFile section */
@@ -56,10 +59,13 @@
 		7F69967624E2C62C009D7821 /* UserFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F69967A24E2C8C8009D7821 /* UserProfileCardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		7F69967C24E2CED5009D7821 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		7F69968024E2D8A1009D7821 /* UProfileCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UProfileCollectionViewController.swift; sourceTree = "<group>"; };
 		7F69968424E2DB5B009D7821 /* UserHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeader.swift; sourceTree = "<group>"; };
 		7F6B353824E16D73008C37F4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		7F6B353A24E2BCAD008C37F4 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		7FA0EAE024E31ED90093025A /* FeedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewController.swift; sourceTree = "<group>"; };
+		7FABA6E624E3A32500B853D4 /* AuthPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthPickerViewController.xib; sourceTree = "<group>"; };
+		7FABA6E824E3BDBF00B853D4 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		7FABA6EC24E4172D00B853D4 /* ProfileCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewController.swift; sourceTree = "<group>"; };
+		7FABA6EE24E4561700B853D4 /* TextView + Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextView + Placeholder.swift"; sourceTree = "<group>"; };
 		7FE53EE824E305E60083A3AC /* AuthPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPickerViewController.swift; sourceTree = "<group>"; };
 		A9B33C7BA063C860FADD629A /* Pods-InstagramClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.release.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,13 +114,14 @@
 				7F2D343324DC34AE00E51698 /* Authentication */,
 				7F58898324E08E5200ABBCC9 /* AppDelegate */,
 				7F2D342024DC332400E51698 /* ViewController.swift */,
+				7FA0EAE024E31ED90093025A /* FeedCollectionViewController.swift */,
+				7FABA6EC24E4172D00B853D4 /* ProfileCollectionViewController.swift */,
+				7F2D342224DC332400E51698 /* Main.storyboard */,
 				7F2D344424DC6F2C00E51698 /* FeedDetailView.swift */,
-				7F69968024E2D8A1009D7821 /* UProfileCollectionViewController.swift */,
 				7F2D343A24DC478C00E51698 /* UploadPostViewController.swift */,
 				7F69967A24E2C8C8009D7821 /* UserProfileCardCollectionViewCell.xib */,
 				7F69967624E2C62C009D7821 /* UserFeedCollectionViewCell.swift */,
 				7F69968424E2DB5B009D7821 /* UserHeader.swift */,
-				7F2D342224DC332400E51698 /* Main.storyboard */,
 				7F2D342824DC332C00E51698 /* Assets.xcassets */,
 				7F2D342A24DC332C00E51698 /* LaunchScreen.storyboard */,
 				7F2D342D24DC332C00E51698 /* Info.plist */,
@@ -122,9 +129,11 @@
 				7F2D342524DC332400E51698 /* InstagramClone.xcdatamodeld */,
 				7F58898224E08E2100ABBCC9 /* Model */,
 				7F69967C24E2CED5009D7821 /* Extensions.swift */,
-				7F6B353A24E2BCAD008C37F4 /* UserProfileViewController.swift */,
 				7F6B353824E16D73008C37F4 /* ProfileViewController.swift */,
+				7FABA6E624E3A32500B853D4 /* AuthPickerViewController.xib */,
 				7FE53EE824E305E60083A3AC /* AuthPickerViewController.swift */,
+				7FABA6E824E3BDBF00B853D4 /* InitialViewController.swift */,
+				7FABA6EE24E4561700B853D4 /* TextView + Placeholder.swift */,
 			);
 			path = InstagramClone;
 			sourceTree = "<group>";
@@ -229,6 +238,7 @@
 			files = (
 				7F2D342C24DC332C00E51698 /* LaunchScreen.storyboard in Resources */,
 				7F2D342924DC332C00E51698 /* Assets.xcassets in Resources */,
+				7FABA6E724E3A32500B853D4 /* AuthPickerViewController.xib in Resources */,
 				7F2D343924DC3D3F00E51698 /* GoogleService-Info.plist in Resources */,
 				7F2D342424DC332400E51698 /* Main.storyboard in Resources */,
 				7F69967B24E2C8C9009D7821 /* UserProfileCardCollectionViewCell.xib in Resources */,
@@ -301,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FABA6ED24E4172D00B853D4 /* ProfileCollectionViewController.swift in Sources */,
 				7F69967724E2C62C009D7821 /* UserFeedCollectionViewCell.swift in Sources */,
 				7F2D343724DC34EC00E51698 /* SignupViewController.swift in Sources */,
 				7F2D342124DC332400E51698 /* ViewController.swift in Sources */,
@@ -310,13 +321,14 @@
 				7F2D343B24DC478D00E51698 /* UploadPostViewController.swift in Sources */,
 				7F2D344524DC6F2C00E51698 /* FeedDetailView.swift in Sources */,
 				7F6B353924E16D73008C37F4 /* ProfileViewController.swift in Sources */,
-				7F69968124E2D8A1009D7821 /* UProfileCollectionViewController.swift in Sources */,
 				7F2D344124DC5A2F00E51698 /* Comment.swift in Sources */,
+				7FA0EAE124E31ED90093025A /* FeedCollectionViewController.swift in Sources */,
 				7F69968524E2DB5B009D7821 /* UserHeader.swift in Sources */,
-				7F6B353B24E2BCAD008C37F4 /* UserProfileViewController.swift in Sources */,
+				7FABA6E924E3BDBF00B853D4 /* InitialViewController.swift in Sources */,
 				7F69967D24E2CED5009D7821 /* Extensions.swift in Sources */,
 				7F2D343F24DC5A0A00E51698 /* Post.swift in Sources */,
 				7F2D343524DC34D400E51698 /* LoginViewController.swift in Sources */,
+				7FABA6EF24E4561700B853D4 /* TextView + Placeholder.swift in Sources */,
 				7F2D341F24DC332400E51698 /* SceneDelegate.swift in Sources */,
 				7F2D344324DC5A4D00E51698 /* INUser.swift in Sources */,
 			);

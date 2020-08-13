@@ -15,98 +15,98 @@ import FirebaseStorage
 import MaterialComponents
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FPCardCollectionViewCellDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var currentUser: User!
     lazy var uid = currentUser.uid
     
-    
-    func showProfile(_ profile: INUser) {
-        performSegue(withIdentifier: "account", sender: profile)
-    }
-    
-    func showTaggedPhotos(_ hashtag: String) {
-        performSegue(withIdentifier: "hashtag", sender: hashtag)
-    }
-    
-    func showLightbox(_ index: Int) {
-      let lightboxImages = posts.map {
-        return LightboxImage(imageURL: $0.fullURL, text: "\($0.author.fullname): \($0.text)")
-      }
-    }
-    
-      func viewComments(_ post: Post) {
-      performSegue(withIdentifier: "comment", sender: post)
-    }
-    
-    func toogleLike(_ post: Post, label: UILabel) {
-      let postLike = database.reference(withPath: "likes/\(post.postID)/\(uid)")
-      if post.isLiked {
-        postLike.removeValue { error, _ in
-          if let error = error {
-            print(error.localizedDescription)
-            return
-          }
-        }
-      } else {
-        postLike.setValue(ServerValue.timestamp()) { error, _ in
-          if let error = error {
-            print(error.localizedDescription)
-            return
-          }
-        }
-      }
-    }
-
-    
-    func optionPost(_ post: Post, _ button: UIButton, completion: (() -> Swift.Void)? = nil) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if post.author.uid != uid {
-            alert.addAction(UIAlertAction(title: "Report", style: .destructive , handler:{ _ in
-                let alertController = MDCAlertController.init(title: "Report Post?", message: nil)
-                let cancelAction = MDCAlertAction(title: "Cancel", handler: nil)
-                let reportAction = MDCAlertAction(title: "Report") { _ in
-                    self.database.reference(withPath: "postFlags/\(post.postID)/\(self.uid)").setValue(true)
-                }
-                alertController.addAction(reportAction)
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true, completion: nil)
-            }))
-        } else {
-            alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ _ in
-                let alertController = MDCAlertController.init(title: "Delete Post?", message: nil)
-                let cancelAction = MDCAlertAction(title: "Cancel", handler: nil)
-                let deleteAction = MDCAlertAction(title: "Delete") { _ in
-                    let postID = post.postID
-                    let update = [ "people/\(self.uid)/posts/\(postID)": NSNull(),
-                                   "comments/\(postID)": NSNull(),
-                                   "likes/\(postID)": NSNull(),
-                                   "posts/\(postID)": NSNull(),
-                                   "feed/\(self.uid)/\(postID)": NSNull()]
-                    self.ref.updateChildValues(update) { error, reference in
-                        if let error = error {
-                            print(error.localizedDescription)
-                            return
-                        }
-                        if let completion = completion {
-                            completion()
-                        }
-                    }
-                    let storage = Storage.storage()
-                    storage.reference(forURL: post.fullURL.absoluteString).delete()
-                    storage.reference(forURL: post.thumbURL.absoluteString).delete()
-                }
-                alertController.addAction(deleteAction)
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true, completion: nil)
-            }))
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
-        alert.popoverPresentationController?.sourceView = button
-        alert.popoverPresentationController?.sourceRect = button.bounds
-        present(alert, animated:true, completion:nil)
-    }
-    
+//
+//    func showProfile(_ profile: INUser) {
+//        performSegue(withIdentifier: "account", sender: profile)
+//    }
+//
+//    func showTaggedPhotos(_ hashtag: String) {
+//        performSegue(withIdentifier: "hashtag", sender: hashtag)
+//    }
+//
+//    func showLightbox(_ index: Int) {
+//      let lightboxImages = posts.map {
+//        return LightboxImage(imageURL: $0.fullURL, text: "\($0.author.fullname): \($0.text)")
+//      }
+//    }
+//
+//      func viewComments(_ post: Post) {
+//      performSegue(withIdentifier: "comment", sender: post)
+//    }
+//
+//    func toogleLike(_ post: Post, label: UILabel) {
+//      let postLike = database.reference(withPath: "likes/\(post.postID)/\(uid)")
+//      if post.isLiked {
+//        postLike.removeValue { error, _ in
+//          if let error = error {
+//            print(error.localizedDescription)
+//            return
+//          }
+//        }
+//      } else {
+//        postLike.setValue(ServerValue.timestamp()) { error, _ in
+//          if let error = error {
+//            print(error.localizedDescription)
+//            return
+//          }
+//        }
+//      }
+//    }
+//
+//
+//    func optionPost(_ post: Post, _ button: UIButton, completion: (() -> Swift.Void)? = nil) {
+//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        if post.author.uid != uid {
+//            alert.addAction(UIAlertAction(title: "Report", style: .destructive , handler:{ _ in
+//                let alertController = MDCAlertController.init(title: "Report Post?", message: nil)
+//                let cancelAction = MDCAlertAction(title: "Cancel", handler: nil)
+//                let reportAction = MDCAlertAction(title: "Report") { _ in
+//                    self.database.reference(withPath: "postFlags/\(post.postID)/\(self.uid)").setValue(true)
+//                }
+//                alertController.addAction(reportAction)
+//                alertController.addAction(cancelAction)
+//                self.present(alertController, animated: true, completion: nil)
+//            }))
+//        } else {
+//            alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ _ in
+//                let alertController = MDCAlertController.init(title: "Delete Post?", message: nil)
+//                let cancelAction = MDCAlertAction(title: "Cancel", handler: nil)
+//                let deleteAction = MDCAlertAction(title: "Delete") { _ in
+//                    let postID = post.postID
+//                    let update = [ "people/\(self.uid)/posts/\(postID)": NSNull(),
+//                                   "comments/\(postID)": NSNull(),
+//                                   "likes/\(postID)": NSNull(),
+//                                   "posts/\(postID)": NSNull(),
+//                                   "feed/\(self.uid)/\(postID)": NSNull()]
+//                    self.ref.updateChildValues(update) { error, reference in
+//                        if let error = error {
+//                            print(error.localizedDescription)
+//                            return
+//                        }
+//                        if let completion = completion {
+//                            completion()
+//                        }
+//                    }
+//                    let storage = Storage.storage()
+//                    storage.reference(forURL: post.fullURL.absoluteString).delete()
+//                    storage.reference(forURL: post.thumbURL.absoluteString).delete()
+//                }
+//                alertController.addAction(deleteAction)
+//                alertController.addAction(cancelAction)
+//                self.present(alertController, animated: true, completion: nil)
+//            }))
+//        }
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler: nil))
+//        alert.popoverPresentationController?.sourceView = button
+//        alert.popoverPresentationController?.sourceRect = button.bounds
+//        present(alert, animated:true, completion:nil)
+//    }
+//    
 
     
     @IBOutlet weak var feedTableView: UITableView!
@@ -126,6 +126,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("_______________________")
+        print(Auth.auth().currentUser?.uid)
+        print("_______________________") 
         feedTableView.delegate = self
         feedTableView.dataSource = self
         self.feedTableView.reloadData()
@@ -285,17 +288,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 }
 
 
-extension UICollectionViewController {
-  var feedViewController: ViewController {
-    return navigationController?.viewControllers[0] as! ViewController
-  }
 
-  internal func cleanCollectionView() {
-    if collectionView!.numberOfItems(inSection: 0) > 0 {
-      collectionView!.reloadSections([0])
-    }
-  }
-}
 
 extension UIViewController {
   func displaySpinner() -> UIView {

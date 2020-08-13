@@ -13,7 +13,7 @@ import SDWebImage
 import FirebaseAuth
 
 
-protocol FPCardCollectionViewCellDelegate: class {
+protocol CardCollectionViewCellDelegate: class {
     func showProfile(_ author: INUser)
     func showTaggedPhotos(_ hashtag: String)
     func showLightbox(_ index: Int)
@@ -39,7 +39,7 @@ class UserFeedCollectionViewCell: MDCCardCollectionCell {
     let attributes = [NSAttributedString.Key.font: UIFont.mdc_preferredFont(forMaterialTextStyle: .body2)]
     
     var post: Post!
-    weak var delegate: FPCardCollectionViewCellDelegate?
+    weak var delegate: CardCollectionViewCellDelegate?
     var labelConstraints: [NSLayoutConstraint]!
     public var imageConstraint: NSLayoutConstraint?
     

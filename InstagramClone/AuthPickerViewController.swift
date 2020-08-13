@@ -10,55 +10,48 @@ import FirebaseUI
 import MaterialComponents.MDCTypography
 
 class AuthPickerViewController: FUIAuthPickerViewController {
-    @IBOutlet var readonlyWarningLabel: UILabel!
-     let attributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)]
-     let attributes2 = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)]
-     var agreed = false
 
-     lazy var disclaimer: MDCAlertController = {
-       let alertController = MDCAlertController(title: nil, message: "I understand FriendlyPix is an application aimed at showcasing the Firebase platform capabilities, and should not be used with private or sensitive information. All FriendlyPix data and inactive accounts are regularly removed. I agree to the Terms of Service and Privacy Policy.")
-
-       let acceptAction = MDCAlertAction(title: "I agree", emphasis: .high) { action in
-         self.agreed = true
-       }
-       alertController.addAction(acceptAction)
-       let termsAction = MDCAlertAction(title: "Terms") { action in
-         UIApplication.shared.open(URL(string: "https://friendly-pix.com/terms")!,
-                                   options: [:], completionHandler: { completion in
-           self.present(alertController, animated: true, completion: nil)
-         })
-       }
-       alertController.addAction(termsAction)
-       let policyAction = MDCAlertAction(title: "Privacy") { action in
-         UIApplication.shared.open(URL(string: "https://www.google.com/policies/privacy")!,
-                                   options: [:], completionHandler: { completion in
-           self.present(alertController, animated: true, completion: nil)
-         })
-       }
-       alertController.addAction(policyAction)
-       let colorScheme = MDCSemanticColorScheme()
-       MDCAlertColorThemer.applySemanticColorScheme(colorScheme, to: alertController)
-       return alertController
-     }()
-
+    
+    @IBAction func signupPressed(_ sender: UIButton) {
+        let st = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = st.instantiateViewController(withIdentifier: "SignupViewController")
+        present(vc, animated: true)
+    }
+    
+    @IBAction func loginPressed(_ sender: Any) {
+    }
+    
      override func viewDidAppear(_ animated: Bool) {
        super.viewDidAppear(animated)
-       if (AppDelegate.euroZone) {
-         readonlyWarningLabel.isHidden = false
-       }
-       if !agreed {
-         self.present(disclaimer, animated: true, completion: nil)
-       }
+        
+       // configureUI()
+//       if (AppDelegate.euroZone) {
+//         readonlyWarningLabel.isHidden = false
+//       }
+//       if !agreed {
+//         self.present(disclaimer, animated: true, completion: nil)
+//       }
      }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configureUI() {
+        
+        //configureNaviagtionController()
+//
+//        view.backgroundColor = .backgroundColor
+//        //view.addSubview(uberTitleLabel)
+//        //uberTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 40)
+//        //uberTitleLabel.centerX(inView: view)
+//
+//        let stackView = UIStackView(arrangedSubviews: [emailContainerView,
+//                                                        passwordContainerView,
+//                                                         loginButton])
+//        stackView.axis = .vertical
+//        stackView.distribution = .fillEqually
+//        stackView.spacing = 16
+//
+//        view.addSubview(stackView)
+//
+//        stackView.anchorItem(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
+        
     }
-    */
 
 }
